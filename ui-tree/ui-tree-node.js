@@ -54,6 +54,7 @@ class UITreeNode extends HTMLElement {
 
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(treeNodeTemplate.content.cloneNode(true));
+        this.toggle = this.toggle.bind(this);
     }
 
     toggle() {
@@ -64,11 +65,11 @@ class UITreeNode extends HTMLElement {
     connectedCallback() {
         this.shadowRoot
             .querySelector('.caret')
-            .addEventListener('click', () => this.toggle());
+            .addEventListener('click', this.toggle);
     }
 
     disconnectedCallback() {
-        this.shadowRoot.querySelector('.caret').removeEventListener();
+        this.shadowRoot.querySelector('.caret').removeEventListener('click', this.toggle);
     }
 }
 

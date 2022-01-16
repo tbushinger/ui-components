@@ -22,10 +22,18 @@ treeNodeTemplate.innerHTML = `
     transform: rotate(90deg);  
   }
 
+  li {
+    background-color: #F0F0F0;
+    border: solid 1px #DDDDDD;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding: 5px;
+  }
+
   ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin-top: 5px;
+    padding-top: 5px;
     padding-left: 20px;
   }  
 

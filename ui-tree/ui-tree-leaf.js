@@ -2,7 +2,10 @@ const treeLeafTemplate = document.createElement('template');
 treeLeafTemplate.innerHTML = `
   <style>
   li {
-    padding-left: 20px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #FFFFFF;
+    border-radius: 3px;
   }  
   </style>
 

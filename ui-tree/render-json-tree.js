@@ -1,6 +1,7 @@
 
 class JsonTreeRender {
-    constructor() {
+    constructor(uiTreeApi) {
+        this.uiTreeApi = uiTreeApi;
         this.onNode = this.onNode.bind(this);
         this.onLeaf = this.onLeaf.bind(this);
         this.ids = {};
@@ -38,6 +39,15 @@ class JsonTreeRender {
         }
     }
 
+    removedUnusedNodes() {
+        Object.keys(this.prevIds).forEach(this.uiTreeApi.removeNode);
+    }
+
+    storePrevIds() {
+        this.prevIds = this.ids;
+        this.ids = {};
+    }
+
     onNode(node, path, _isArray) {
         if (!this.isValidPath(path)) {
             return node;
@@ -47,7 +57,7 @@ class JsonTreeRender {
 
         const text = `${name} (${_isArray ? 'Array' : 'Object'})`;
 
-        uiTreeApi.createNode(parentId, id, text);
+        this.uiTreeApi.createNode(parentId, id, text);
 
         this.updateIds(id);
 
@@ -58,10 +68,10 @@ class JsonTreeRender {
         if (!this.isValidPath(path)) {
             return value;
         }
-
+        
         const { parentId, id, name } = this.extractInfo(path);
 
-        uiTreeApi.createLeaf(parentId, id, name, value);
+        this.uiTreeApi.createLeaf(parentId, id, name, value);
 
         this.updateIds(id);
 
@@ -71,14 +81,11 @@ class JsonTreeRender {
     render(tree) {
         traverseObject(tree, this.onNode, this.onLeaf);
 
-        Object.keys(this.prevIds).forEach(uiTreeApi.removeNode);
-
-        this.prevIds = this.ids;
-        this.ids = {};
+        this.removedUnusedNodes();
+        this.storePrevIds();
     }
 }
 
-function createRenderer() {
-    const renderer = new JsonTreeRender();
-    return renderer.render.bind(renderer);
+function createRenderer(uiTreeApi) {
+    return new JsonTreeRender(uiTreeApi);
 }

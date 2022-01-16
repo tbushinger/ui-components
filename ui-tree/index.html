@@ -61,13 +61,12 @@
                 }
             };
 
-            const render = createRenderer();
-            render(model);
+            const renderer = createRenderer(uiTreeApi);
+            renderer.render(model);
             setTimeout(() => {
-                render(model2);
+                renderer.render(model2);
             }, 5000)
 
-            // pass in tree api
             // styling
         </script>
     </body>

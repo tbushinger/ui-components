@@ -21,11 +21,7 @@
         </p>
         <p>Click on the arrow(s) to open or close the tree branches.</p>
 
-        <ui-tree>
-            <ui-tree-node id="root-model" slot="node">
-                <span slot="text">Cars</span>
-            </ui-tree-node>
-        </ui-tree>
+        <ui-tree id="root"></ui-tree>
 
         <script src="./ui-tree.js"></script>
         <script src="./ui-tree-node.js"></script>
@@ -34,25 +30,45 @@
         <script src="./utils.js"></script>
         <script src="./render-json-tree.js"></script>
         <script>
-
-            const model = {              
-                car3: {
-                  make: "Ford",
-                  model: "F-150",
+            const model = {
+                root: {
+                cars: {
+                    car3: {
+                        make: 'Ford',
+                        model: 'F-150',
+                    },
+                    car4: {
+                        make: 'Ford',
+                        model: 'Mustang',
+                        drivers: ['Bill', { name: 'Tom' }],
+                    },
                 },
-                car4: {
-                  make: "Ford",
-                  model: "Mustang",
-                  drivers: ["Bill", { "name": "Tom" }]
                 }
-            }
+            };
 
-            renderJsonTree(model);
+            const model2 = {
+                root: {
+                cars: {
+                    car3: {
+                        make: 'Ford',
+                        model: 'F150',
+                    },
+                    car5: {
+                        make: 'Honda',
+                        model: 'CRV',
+                    },                    
+                },
+                }
+            };
 
-// find tree element
-// root creation
-// removeable
-// pass in tree api
+            const render = createRenderer();
+            render(model);
+            setTimeout(() => {
+                render(model2);
+            }, 5000)
+
+            // pass in tree api
+            // styling
         </script>
     </body>
 </html>

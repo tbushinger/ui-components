@@ -1,0 +1,19 @@
+{
+    "name": "ui-tree-extension",
+    "description": "demo of ui-tree extension",
+    "version": "1.0",
+    "minimum_chrome_version": "10.0",
+    "devtools_page": "devtools.html",
+    "manifest_version": 3,
+    "background": {
+      "service_worker": "background.js"
+    },
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "host_permissions": [
+      "http://*/*",
+      "https://*/*"
+    ]
+  }

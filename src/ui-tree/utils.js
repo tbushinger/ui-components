@@ -1,4 +1,4 @@
-function traverseObject(node, onNode = (n) => n, onLeaf = (v) => v) {
+export function traverseObject(node, onNode = (n) => n, onLeaf = (v) => v) {
     function isArray(value) {
         return Array.isArray(value);
     }

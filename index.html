@@ -23,13 +23,9 @@
 
         <ui-tree id="root"></ui-tree>
 
-        <script src="./ui-tree.js"></script>
-        <script src="./ui-tree-node.js"></script>
-        <script src="./ui-tree-leaf.js"></script>
-        <script src="./ui-tree-api.js"></script>
-        <script src="./utils.js"></script>
-        <script src="./render-json-tree.js"></script>
-        <script>
+        <script type="module">
+            import { createRenderer } from "./src/ui-tree/index.js"
+
             const model = {
                 root: {
                 cars: {
@@ -46,28 +42,15 @@
                 }
             };
 
-            const model2 = {
-                root: {
-                cars: {
-                    car3: {
-                        make: 'Ford',
-                        model: 'F150',
-                    },
-                    car5: {
-                        make: 'Honda',
-                        model: 'CRV',
-                    },                    
-                },
-                }
-            };
-
-            const renderer = createRenderer(uiTreeApi);
+            const renderer = createRenderer();
             renderer.render(model);
-            setTimeout(() => {
-                renderer.render(model2);
-            }, 5000)
 
             // styling
+            // update, add, delete methods
+            // webpack build/webpack server
+            // Demo page (src)
+            // Demo page (docker)
+            // README
         </script>
     </body>
 </html>

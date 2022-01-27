@@ -1,5 +1,5 @@
-const treeTemplate = document.createElement('template');
-treeTemplate.innerHTML = `
+const template = document.createElement('template');
+template.innerHTML = `
   <style>
   ul {
     list-style-type: none;
@@ -18,7 +18,7 @@ class UITree extends HTMLElement {
     super();
 
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(treeTemplate.content.cloneNode(true));
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 }
 

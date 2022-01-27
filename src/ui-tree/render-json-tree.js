@@ -1,7 +1,8 @@
+import { traverseObject } from "./utils.js";
+import { createNode, createLeaf, removeNode } from './ui-tree-api.js';
 
-class JsonTreeRender {
-    constructor(uiTreeApi) {
-        this.uiTreeApi = uiTreeApi;
+export class JsonTreeRender {
+    constructor() {
         this.onNode = this.onNode.bind(this);
         this.onLeaf = this.onLeaf.bind(this);
         this.ids = {};
@@ -40,7 +41,7 @@ class JsonTreeRender {
     }
 
     removedUnusedNodes() {
-        Object.keys(this.prevIds).forEach(this.uiTreeApi.removeNode);
+        Object.keys(this.prevIds).forEach(removeNode);
     }
 
     storePrevIds() {
@@ -57,7 +58,7 @@ class JsonTreeRender {
 
         const text = `${name} (${_isArray ? 'Array' : 'Object'})`;
 
-        this.uiTreeApi.createNode(parentId, id, text);
+        createNode(parentId, id, text);
 
         this.updateIds(id);
 
@@ -71,7 +72,7 @@ class JsonTreeRender {
         
         const { parentId, id, name } = this.extractInfo(path);
 
-        this.uiTreeApi.createLeaf(parentId, id, name, value);
+        createLeaf(parentId, id, name, value);
 
         this.updateIds(id);
 
@@ -86,6 +87,6 @@ class JsonTreeRender {
     }
 }
 
-function createRenderer(uiTreeApi) {
-    return new JsonTreeRender(uiTreeApi);
+export function createRenderer() {
+    return new JsonTreeRender();
 }

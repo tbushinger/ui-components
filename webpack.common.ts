@@ -25,7 +25,17 @@ const config: Configuration = {
             },
             {
                 test: /\.html$/,
-                use: ['html-loader'],
+                use: {
+                    loader: 'html-loader',
+                    options: {
+                        preprocessor: async (content: string, _loaderContext: any) => {
+                            // (_loaderContext.mode === "development") 
+                            const extensionUtilsPath = "../extension/";
+
+                            return content.replace(/\[extensionUtilsPath\]/g, extensionUtilsPath);
+                        },
+                    },
+                },
             },
             {
                 test: /\.(svg|png|jpg|gif)$/,

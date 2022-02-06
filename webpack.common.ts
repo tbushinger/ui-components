@@ -11,7 +11,7 @@ const config: Configuration = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/template.html',
+            template: './statics/template.html',
         }),
         new ForkTsCheckerWebpackPlugin({
             async: false,
@@ -27,6 +27,7 @@ const config: Configuration = {
                 test: /\.html$/,
                 use: {
                     loader: 'html-loader',
+                    /*
                     options: {
                         preprocessor: async (content: string, _loaderContext: any) => {
                             // (_loaderContext.mode === "development") 
@@ -35,6 +36,7 @@ const config: Configuration = {
                             return content.replace(/\[extensionUtilsPath\]/g, extensionUtilsPath);
                         },
                     },
+                    */
                 },
             },
             {

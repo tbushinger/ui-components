@@ -1,4 +1,4 @@
-chrome.devtools.panels.create("Remix Data","FontPicker.png","panel.html", () => null);
+chrome.devtools.panels.create("Remix Data","FontPicker.png","app/dist/index.html", () => null);
 
 const client = createDevToolsClient();
 
